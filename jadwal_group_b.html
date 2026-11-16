@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal & Klasemen Otomatis - Group B</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h3 {
+            margin-top: 30px;
+            color: #34495e;
+        }
+        ul {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style-type: none;
+        }
+        ul li {
+            font-weight: bold;
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #bdc3c7;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .klasemen-table th {
+            background-color: #27ae60;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .score-input {
+            width: 45px;
+            text-align: center;
+            font-size: 16px;
+            padding: 4px;
+        }
+        .status-check {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        .team-name {
+            text-align: left;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <!-- Logo Turnamen -->
+    <img src="11.png" alt="Logo Turnamen" style="width: 120px; height: auto; display: block; margin: 0 auto 10px auto;">
+</div>
+
+<div class="container">
+    <h2>GROUP B - JADWAL & KLASEMEN OTOMATIS</h2>
+
+    <!-- Data Tim Group B -->
+    <h3>Daftar Tim Group B</h3>
+    <ul>
+        <li>1. HAKMATEK GANG 1</li>
+        <li>2. SAO JOSE</li>
+        <li>3. HAKMATEK</li>
+        <li>4. OBOR FC</li>
+        <li>5. WEDALAK</li>
+    </ul>
+
+    <!-- Tabel Klasemen Otomatis -->
+    <h3>Klasemen Sementara Group B</h3>
+    <table class="klasemen-table">
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th>Tim</th>
+                <th>M</th>
+                <th>W</th>
+                <th>D</th>
+                <th>L</th>
+                <th>GM</th>
+                <th>GK</th>
+                <th>SG</th>
+                <th>Poin</th>
+            </tr>
+        </thead>
+        <tbody id="klasemen-body">
+            <!-- Diisi otomatis oleh JavaScript -->
+        </tbody>
+    </table>
+
+    <!-- Jadwal dan Skor Pertandingan -->
+    <h3>Jadwal & Skor Pertandingan</h3>
+    <p><small>*Centang kotak <b>"Selesai"</b> agar skor pertandingan masuk ke hitungan klasemen.</small></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Match</th>
+                <th>Hari / Tanggal</th>
+                <th>Jam</th>
+                <th>Tim</th>
+                <th>Skor</th>
+                <th>Tim</th>
+                <th>Selesai</th>
+            </tr>
+        </thead>
+        <tbody id="jadwal-body">
+            <tr data-team-a="HAKMATEK GANG 1" data-team-b="SAO JOSE">
+                <td>1</td>
+                <td>Minggu, 15 Nov 2026</td>
+                <td>19:00</td>
+                <td>HAKMATEK GANG 1</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>SAO JOSE</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="HAKMATEK" data-team-b="OBOR FC">
+                <td>2</td>
+                <td>Senin, 16 Nov 2026</td>
+                <td>20:00</td>
+                <td>HAKMATEK</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>OBOR FC</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="WEDALAK" data-team-b="HAKMATEK GANG 1">
+                <td>3</td>
+                <td>Selasa, 17 Nov 2026</td>
+                <td>20:00</td>
+                <td>WEDALAK</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>HAKMATEK GANG 1</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="SAO JOSE" data-team-b="HAKMATEK">
+                <td>4</td>
+                <td>Jumat, 20 Nov 2026</td>
+                <td>19:00</td>
+                <td>SAO JOSE</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>HAKMATEK</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="OBOR FC" data-team-b="WEDALAK">
+                <td>5</td>
+                <td>Selasa, 24 Nov 2026</td>
+                <td>20:00</td>
+                <td>OBOR FC</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>WEDALAK</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="HAKMATEK GANG 1" data-team-b="HAKMATEK">
+                <td>6</td>
+                <td>Kamis, 19 Nov 2026</td>
+                <td>20:00</td>
+                <td>HAKMATEK GANG 1</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>HAKMATEK</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="SAO JOSE" data-team-b="OBOR FC">
+                <td>7</td>
+                <td>Rabu, 18 Nov 2026</td>
+                <td>20:00</td>
+                <td>SAO JOSE</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>OBOR FC</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="HAKMATEK" data-team-b="WEDALAK">
+                <td>8</td>
+                <td>Senin, 23 Nov 2026</td>
+                <td>19:00</td>
+                <td>HAKMATEK</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>WEDALAK</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="HAKMATEK GANG 1" data-team-b="OBOR FC">
+                <td>9</td>
+                <td>Sabtu, 21 Nov 2026</td>
+                <td>20:00</td>
+                <td>HAKMATEK GANG 1</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>OBOR FC</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+            <tr data-team-a="SAO JOSE" data-team-b="WEDALAK">
+                <td>10</td>
+                <td>Minggu, 22 Nov 2026</td>
+                <td>20:00</td>
+                <td>SAO JOSE</td>
+                <td><input type="number" min="0" class="score-input score-a" value="0"> - <input type="number" min="0" class="score-input score-b" value="0"></td>
+                <td>WEDALAK</td>
+                <td><input type="checkbox" class="status-check"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const teamsList = [
+        "HAKMATEK GANG 1",
+        "SAO JOSE",
+        "HAKMATEK",
+        "OBOR FC",
+        "WEDALAK"
+    ];
+
+    function updateKlasemen() {
+        let standings = {};
+        teamsList.forEach(team => {
+            standings[team] = { name: team, m: 0, w: 0, d: 0, l: 0, gm: 0, gk: 0, sg: 0, poin: 0 };
+        });
+
+        const rows = document.querySelectorAll('#jadwal-body tr');
+        rows.forEach(row => {
+            const isFinished = row.querySelector('.status-check').checked;
+            if (isFinished) {
+                const teamA = row.getAttribute('data-team-a');
+                const teamB = row.getAttribute('data-team-b');
+                const scoreA = parseInt(row.querySelector('.score-a').value) || 0;
+                const scoreB = parseInt(row.querySelector('.score-b').value) || 0;
+
+                standings[teamA].m += 1;
+                standings[teamB].m += 1;
+                standings[teamA].gm += scoreA;
+                standings[teamA].gk += scoreB;
+                standings[teamB].gm += scoreB;
+                standings[teamB].gk += scoreA;
+
+                if (scoreA > scoreB) {
+                    standings[teamA].w += 1;
+                    standings[teamA].poin += 3;
+                    standings[teamB].l += 1;
+                } else if (scoreB > scoreA) {
+                    standings[teamB].w += 1;
+                    standings[teamB].poin += 3;
+                    standings[teamA].l += 1;
+                } else {
+                    standings[teamA].d += 1;
+                    standings[teamB].d += 1;
+                    standings[teamA].poin += 1;
+                    standings[teamB].poin += 1;
+                }
+            }
+        });
+
+        let sortedTeams = Object.values(standings).map(t => {
+            t.sg = t.gm - t.gk;
+            return t;
+        });
+
+        sortedTeams.sort((a, b) => {
+            if (b.poin !== a.poin) return b.poin - a.poin;
+            if (b.sg !== a.sg) return b.sg - a.sg;
+            return b.gm - a.gm;
+        });
+
+        const tbody = document.getElementById('klasemen-body');
+        tbody.innerHTML = '';
+        sortedTeams.forEach((t, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td class="team-name">${t.name}</td>
+                    <td>${t.m}</td>
+                    <td>${t.w}</td>
+                    <td>${t.d}</td>
+                    <td>${t.l}</td>
+                    <td>${t.gm}</td>
+                    <td>${t.gk}</td>
+                    <td>${t.sg}</td>
+                    <td><strong>${t.poin}</strong></td>
+                </tr>
+            `;
+        });
+    }
+
+    document.querySelectorAll('.score-input, .status-check').forEach(el => {
+        el.addEventListener('input', updateKlasemen);
+        el.addEventListener('change', updateKlasemen);
+    });
+
+    updateKlasemen();
+</script>
+
+</body>
+</html>
